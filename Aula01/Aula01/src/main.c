@@ -15,7 +15,7 @@ void setup()
     io_conf.intr_type = GPIO_PIN_INTR_DISABLE;
     io_conf.pull_down_en = 0;
     io_conf.pull_up_en = 0;
-    io_conf.pin_bit_mask = (1ULL << 2);
+    io_conf.pin_bit_mask = GPIO_NUM_12;
     gpio_config(&io_conf);
 
     // Configura o ADC
@@ -26,9 +26,9 @@ void loop()
 {
     while (1)
     {
-        gpio_set_level(2, 0);
+        gpio_set_level(12, 0);
         vTaskDelay(Hall_Read / portTICK_PERIOD_MS);
-        gpio_set_level(2, 1);
+        gpio_set_level(12, 1);
         vTaskDelay(Hall_Read / portTICK_PERIOD_MS);
         Hall_Read = hall_sensor_read();
         printf("Hall_Read: %d\n", Hall_Read);
